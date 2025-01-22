@@ -416,7 +416,7 @@ const HeroContent = ({ theme }) => {
           animate={{ scale: [1, 1.02, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         >
-          Hi, I'm Daniel
+          Hi, I'm Astrav Daniel
         </motion.h1>
 
         <div className="relative">
