@@ -10,6 +10,7 @@ import GitHubStats from "./components/GitHubStats";
 import FunFact from "./components/FunFact";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -78,6 +79,7 @@ const App = () => {
 
   return (
     <AnimatePresence mode="wait">
+      <SpeedInsights/>
       {isLoading ? (
         <LoadingScreen />
       ) : (
