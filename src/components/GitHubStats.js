@@ -20,7 +20,7 @@ const GitHubStats = () => {
   if (!stats) return <div>Loading GitHub stats...</div>;
 
   return (
-    <div className="text-center mt-8">
+    <div className="text-center mt-8 text-orange-500">
       <h3 className="text-xl font-semibold">GitHub Stats</h3>
       <p className="text-lg">
         Repositories: {stats.public_repos} | Followers: {stats.followers}
