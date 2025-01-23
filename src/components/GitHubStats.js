@@ -57,15 +57,17 @@ const GitHubStats = () => {
 
   const StatItem = ({ icon: Icon, value, label }) => (
     <motion.div 
-      className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 p-3 rounded-lg"
+      className="flex flex-col items-center space-x-2 bg-gray-100 dark:bg-gray-800 p-3 rounded-lg"
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <Icon className="text-blue-500" size={24} />
-      <div>
+     
+      <div  className="flex items-center space-x-2 text-indigo-50">
+         <Icon className="text-blue-500" size={20} />
         <p className="font-bold text-lg">{value}</p>
-        <p className="text-sm text-gray-600 dark:text-gray-400">{label}</p>
-      </div>
+       
+      </div> 
+      <p className="text-sm text-gray-600 dark:text-gray-400">{label}</p>
     </motion.div>
   );
 
@@ -74,7 +76,7 @@ const GitHubStats = () => {
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex-1 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      className="flex-1 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-md hover:shadow-lg transition-shadow"
       whileHover={{ scale: 1.03 }}
     >
       <div className="flex justify-between items-center">
@@ -94,12 +96,13 @@ const GitHubStats = () => {
 
   return (
     <motion.div 
-      className="space-y-6"
+      className="space-y-6 bg-white p-5 rounded-lg"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="text-center text-lg  font-bold font-sans">Github</div>
+      <div className="flex flex-shrink flex-wrap md:grid-cols-4 gap-4">
         <StatItem 
           icon={FolderCode} 
           value={stats.public_repos} 
