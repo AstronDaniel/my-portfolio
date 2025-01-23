@@ -6,7 +6,7 @@ import {
   BookOpenIcon,
   ShareIcon 
 } from 'lucide-react';
-import { X_API_KEY } from '../env';
+
 
 const FunFactGenerator = ({ theme = 'light' }) => {
   const [fact, setFact] = useState({ text: "", category: "" });
@@ -38,9 +38,10 @@ const FunFactGenerator = ({ theme = 'light' }) => {
 
   const fetchFact = async (category = factSources[0]) => {
     try {
+      
       setLoading(true);
       const headers = category.apiKeyRequired
-        ? { 'X-Api-Key': X_API_KEY }
+        ? { 'X-Api-Key': process.env.REACT_APP_X_API_KEY }
         : {};
 
       const response = await fetch(category.url, { headers });
