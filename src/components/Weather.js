@@ -31,6 +31,7 @@ const Weather = () => {
           (error) => {
             console.error("Error getting location:", error);
             setLoading(false);
+            setWeather({temperature_2m:'_',weather_code:'nan',relative_humidity_2m:0});
           }
         );
       } else {
@@ -45,7 +46,7 @@ const Weather = () => {
   const getWeatherDescription = (code) => {
     const descriptions = {
       0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
-      45: "Foggy", 61: "Light rain", 63: "Moderate rain", 65: "Heavy rain"
+      45: "Foggy", 61: "Light rain", 63: "Moderate rain", 65: "Heavy rain",nan:"ERR_INTERNET_ERROR"
     };
     return descriptions[code] || "Unknown";
   };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
 
-const Header = () => {
+const Header = ({toggleTheme}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -62,7 +62,9 @@ const Header = () => {
 
             {/* Theme Toggle */}
             <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
+              onClick={() => {
+                setIsDarkMode(!isDarkMode) 
+                 toggleTheme()}}
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors duration-200"
               aria-label="Toggle theme"
             >
@@ -71,7 +73,7 @@ const Header = () => {
 
             {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() =>setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors duration-200"
               aria-label="Toggle menu"
             >

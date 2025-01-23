@@ -11,6 +11,7 @@ import FunFact from "./components/FunFact";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import AdvancedSkills from "./components/AdvancedSkills";
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -18,9 +19,10 @@ const App = () => {
   const [bgImage, setBgImage] = useState(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const [theme, setTheme] = useState(() => 
-    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-  );
+  const [theme, setTheme] = useState("light");
+  // const [theme, setTheme] = useState(() => 
+  //   window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+  // );
 
   const fetchBackgroundImage = useCallback(async () => {
     try {
@@ -50,15 +52,16 @@ const App = () => {
 
   const toggleTheme = useCallback(() => {
     setTheme(prevTheme => {
-      const newTheme = prevTheme === "dark" ? "light" : "dark";
+      const newTheme = prevTheme === "light" ? "dark" : "light";
       document.documentElement.style.setProperty(
         '--bg-primary',
-        newTheme === 'dark' ? '#1a1a1a' : '#ffffff'
+        newTheme === 'dark' ? '#111827' : '#ffffff'
       );
       document.documentElement.style.setProperty(
         '--text-primary',
-        newTheme === 'dark' ? '#ffffff' : '#1a1a1a'
+        newTheme === 'dark' ? '#ffffff' : '#111827'
       );
+      console.log("newTheme: ",newTheme)
       return newTheme;
     });
   }, []);
@@ -76,7 +79,7 @@ const App = () => {
     { name: "Python", level: 80 },
     { name: "TypeScript", level: 75 }
   ];
-
+ 
   return (
     <AnimatePresence mode="wait">
       <SpeedInsights/>
@@ -92,7 +95,7 @@ const App = () => {
           <Header theme={theme} toggleTheme={toggleTheme} />
 
           <main className="relative">
-            <Parallax speed={-20}>
+            <Parallax speed={-15}>
               <section
                 className="min-h-screen relative overflow-hidden"
                 style={heroStyle}
@@ -109,24 +112,10 @@ const App = () => {
               </section>
             </Parallax>
 
-            <section className="py-20 bg-gradient-to-r from-blue-900/50 to-purple-900/50">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="container mx-auto px-4"
-              >
-                <h2 className="text-4xl font-bold text-center mb-16">Skills & Technologies</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  {skills.map((skill) => (
-                    <SkillBar key={skill.name} skill={skill} />
-                  ))}
-                </div>
-              </motion.div>
-            </section>
+           
+            <AdvancedSkills  theme={theme}/>
 
-            <Projects />
+            <Projects theme={theme}/>
             <Skills />
 
             <section className="py-20 bg-gradient-to-r from-purple-900/50 to-blue-900/50">
