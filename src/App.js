@@ -54,7 +54,7 @@ const App = () => {
 
   const toggleTheme = useCallback(() => {
     setTheme(prevTheme => {
-      const newTheme = prevTheme === "dark" ? "light" : "dark";
+      const newTheme = prevTheme === "light" ? "dark" : "light";
       document.documentElement.style.setProperty(
         '--bg-primary',
         newTheme === 'dark' ? '#111827' : '#ffffff'
