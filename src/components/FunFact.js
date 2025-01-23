@@ -43,7 +43,7 @@ const FunFactGenerator = ({ theme = 'light' }) => {
       const headers = category.apiKeyRequired
         ? { 'X-Api-Key': process.env.REACT_APP_X_API_KEY }
         : {};
-console.log(headers)
+
       const response = await fetch(category.url, { headers });
       if (!response.ok) {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
