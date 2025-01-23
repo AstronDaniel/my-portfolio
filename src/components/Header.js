@@ -3,7 +3,7 @@ import { Menu, X, Sun, Moon, Github, Linkedin, Mail } from 'lucide-react';
 
 const Header = ({toggleTheme}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const navItems = [
     { label: 'Home', href: '#home' },
