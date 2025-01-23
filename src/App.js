@@ -12,6 +12,8 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import AdvancedSkills from "./components/AdvancedSkills";
+import ContactForm from "./components/ContactForm";
+
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -95,7 +97,7 @@ const App = () => {
           <Header theme={theme} toggleTheme={toggleTheme} />
 
           <main className="relative">
-            <Parallax speed={-15}>
+            <Parallax speed={-20}>
               <section
                 className="min-h-screen relative overflow-hidden"
                 style={heroStyle}
@@ -111,12 +113,16 @@ const App = () => {
                 <InteractiveGrid theme={theme} />
               </section>
             </Parallax>
+            <AdvancedSkills  theme={theme}/>
+            
+            
+              <Projects theme={theme}/>
+             
+           
+            
 
            
-            <AdvancedSkills  theme={theme}/>
-
-            <Projects theme={theme}/>
-            <Skills />
+            <Skills theme={theme} />
 
             <section className="py-20 bg-gradient-to-r from-purple-900/50 to-blue-900/50">
               <motion.div
@@ -125,7 +131,7 @@ const App = () => {
                 viewport={{ once: true }}
                 className="container mx-auto px-4"
               >
-                <FunFact />
+                <FunFact theme={theme}/>
               </motion.div>
             </section>
 
@@ -316,72 +322,7 @@ const SkillBar = ({ skill }) => {
   );
 };
 
-const ContactForm = ({ theme }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
-  };
-
-  const inputClassName = `w-full p-3 rounded-lg transition-colors duration-200
-    ${theme === 'dark' 
-      ? 'bg-white/10 focus:bg-white/20' 
-      : 'bg-black/5 focus:bg-black/10'}`;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="max-w-2xl mx-auto px-4"
-    >
-      <h2 className="text-4xl font-bold text-center mb-8">Get in Touch</h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <motion.input
-          type="text"
-          placeholder="Name"
-          className={inputClassName}
-          value={formData.name}
-          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-          whileFocus={{ scale: 1.02 }}
-        />
-        <motion.input
-          type="email"
-          placeholder="Email"
-          className={inputClassName}
-          value={formData.email}
-          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-          whileFocus={{ scale: 1.02 }}
-        />
-        <motion.textarea
-          placeholder="Message"
-          rows={4}
-          className={inputClassName}
-          value={formData.message}
-          onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-          whileFocus={{ scale: 1.02 }}
-        />
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className={`w-full py-3 rounded-lg font-medium transition-colors duration-200
-            ${theme === 'dark'
-              ? 'bg-blue-500 hover:bg-blue-600'
-              : 'bg-blue-600 hover:bg-blue-700'}`}
-          type="submit"
-        >
-          Send Message
-        </motion.button>
-      </form>
-    </motion.div>
-  );
-};
 
 const HeroContent = ({ theme }) => {
   const texts = [

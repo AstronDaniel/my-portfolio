@@ -43,14 +43,24 @@ const GithubProjects = ({
 
             // Attempt to fetch README content
             let readmeContent = '';
-            try {
-              const readmeResponse = await fetch(
-                `https://raw.githubusercontent.com/${username}/${repo.name}/master/ReadMe.md`
-              );
-              readmeContent = await readmeResponse.text();
-              console.log(readmeContent);
-            } catch {
-              readmeContent = details.description || 'No description available';
+            const branches = ['main', 'master'];
+            const readmeFiles = ['README.md', 'ReadMe.md', 'readme.md'];
+
+            for (const branch of branches) {
+              for (const readmeFile of readmeFiles) {
+                try {
+                  const readmeResponse = await fetch(
+                    `https://raw.githubusercontent.com/${username}/${repo.name}/${branch}/${readmeFile}`
+                  );
+                  if (readmeResponse.ok) {
+                    readmeContent = await readmeResponse.text();
+                    break;
+                  }
+                } catch {
+                  // Continue to the next iteration
+                }
+              }
+              if (readmeContent) break;
             }
 
             // Extract first paragraph or first line as description
@@ -242,7 +252,7 @@ const GithubProjects = ({
           bg-clip-text text-transparent 
           bg-gradient-to-r from-blue-500 to-purple-500
         `}>
-          GitHub Projects
+         My Projects
         </h2>
         
         {projects.length === 0 ? (
