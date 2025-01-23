@@ -21,7 +21,7 @@ const App = () => {
   const [bgImage, setBgImage] = useState(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   // const [theme, setTheme] = useState(() => 
   //   window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
   // );
